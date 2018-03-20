@@ -1,7 +1,10 @@
-.gradle
-.idea
-build
-gradle
-*.gradle
-gradlew.*
+build/
+.settings/
+.vscode/
+gradle/
 gradlew
+gradlew.bat
+.gradle
+.project
+.idea/
+*.iml
