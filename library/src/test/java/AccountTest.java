@@ -1,5 +1,6 @@
 import com.thoughtworks.step.bank.Account;
-import com.thoughtworks.step.bank.Exception.InsufficientBalanceException;
+import com.thoughtworks.step.bank.Exception.InsufficientBalanceToDebitException;
+import com.thoughtworks.step.bank.Exception.NegativeAmountCreditExceotion;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +12,7 @@ public class AccountTest{
 
   @Before
   public void setUp(){
-    acc = new Account("12345",10000);
+    acc = new Account("12345",10000.0);
   }
 
   @Test
@@ -25,21 +26,26 @@ public class AccountTest{
   }
 
   @Test
-  public void shouldCredit() {
-    acc.credit(1000);
+  public void shouldCredit() throws NegativeAmountCreditExceotion {
+    acc.credit(1000.0);
     assertThat(acc.getBalance(), is(11000.0));
   }
 
+  @Test(expected = NegativeAmountCreditExceotion.class)
+  public void shouldNotLetCreditNegativeAmount() throws NegativeAmountCreditExceotion {
+    acc.credit(-100.0);
+  }
+
   @Test
-  public void shouldDebit() throws InsufficientBalanceException {
+  public void shouldDebit() throws InsufficientBalanceToDebitException {
     assertThat(acc.getBalance(), is(10000.0));
-    acc.debit(1000);
+    acc.debit(1000.0);
     assertThat(acc.getBalance(), is(9000.0));
   }
 
-  @Test(expected = InsufficientBalanceException.class)
-  public void shouldNotLetDebitWhenDontHAveEnoughBalanceToDebit() throws InsufficientBalanceException {
+  @Test(expected = InsufficientBalanceToDebitException.class)
+  public void shouldNotLetDebitWhenDontHAveEnoughBalanceToDebit() throws InsufficientBalanceToDebitException {
     assertThat(acc.getBalance(), is(10000.0));
-    acc.debit(acc.getBalance()+1);
+    acc.debit(acc.getBalance()+1.0);
   }
 }
