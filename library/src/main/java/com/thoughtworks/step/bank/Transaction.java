@@ -8,12 +8,8 @@ abstract public class Transaction {
   private final double amount;
 
   public Transaction(double amount){
-    this(new Date(),amount);
-  }
-
-  protected Transaction(Date date, double amount) {
     this.amount = amount;
-    this.date=date;
+    this.date=new Date();
   }
 
   @Override

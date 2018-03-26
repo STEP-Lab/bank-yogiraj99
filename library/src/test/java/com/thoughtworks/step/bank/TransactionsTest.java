@@ -17,9 +17,15 @@ public class TransactionsTest {
 
   @Test
   public void  shoudldAddDebitTransaction(){
-    DebitTransaction debitTransaction = new DebitTransaction(new Date(),1000);
+    Transaction debitTransaction = new DebitTransaction(1000);
     transactions.debit(debitTransaction);
-    assertThat(transactions.getTransactions(),hasItem(new DebitTransaction(new Date(),1000)));
+    assertThat(transactions.getList(),hasItem(new DebitTransaction(1000)));
   }
 
+  @Test
+  public void shouldAddCreditTransaction(){
+    Transaction creditTransaction = new CreditTransaction(1000);
+    transactions.credit(creditTransaction);
+    assertThat(transactions.getList(),hasItem(new CreditTransaction(1000)));
+  }
 }

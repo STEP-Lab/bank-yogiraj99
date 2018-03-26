@@ -3,17 +3,21 @@ package com.thoughtworks.step.bank;
 import java.util.ArrayList;
 
 public class Transactions {
-  private final ArrayList<Transaction> transactions;
+  private final ArrayList<Transaction> list;
 
   Transactions(){
-    transactions = new ArrayList<Transaction>();
+    list = new ArrayList<Transaction>();
   }
 
-  public void debit(DebitTransaction transaction) {
-    transactions.add(transaction);
+  public void debit(Transaction transaction) {
+    list.add(transaction);
   }
 
-  public ArrayList<Transaction> getTransactions() {
-    return transactions;
+  public ArrayList<Transaction> getList() {
+    return list;
+  }
+
+  public void credit(Transaction transaction) {
+    list.add(transaction);
   }
 }
