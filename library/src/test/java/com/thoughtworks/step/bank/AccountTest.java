@@ -1,3 +1,5 @@
+package com.thoughtworks.step.bank;
+
 import com.thoughtworks.step.bank.Account;
 import com.thoughtworks.step.bank.Exception.InsufficientBalanceToDebitException;
 import com.thoughtworks.step.bank.Exception.NegativeAmountCreditExceotion;
@@ -44,8 +46,9 @@ public class AccountTest{
   }
 
   @Test(expected = InsufficientBalanceToDebitException.class)
-  public void shouldNotLetDebitWhenDontHAveEnoughBalanceToDebit() throws InsufficientBalanceToDebitException {
+  public void shouldNotLetDebitWhenDontHaveEnoughBalanceToDebit() throws InsufficientBalanceToDebitException {
     assertThat(acc.getBalance(), is(10000.0));
     acc.debit(acc.getBalance()+1.0);
   }
+
 }
