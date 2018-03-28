@@ -25,4 +25,12 @@ abstract public class Transaction {
 
     return Objects.hash(date, amount);
   }
+
+  public double getAmount() {
+    return amount;
+  }
+
+  public Date getDate() {
+    return date;
+  }
 }
